@@ -9,20 +9,24 @@ import 'rxjs/Rx';
 import { AppComponent } from './app.component';
 import { AppRouting } from './app.routing';
 import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from "./components/Header/header.component";
+import { SidebarComponent } from "./components/Sidebar/sidebar.component";
+import { FooterComponent } from "./components/Footer/footer.component";
 
 @NgModule({ 
 
         declarations: [ 
-
              AppComponent,
-             HomeComponent
-
+             HomeComponent,
+             HeaderComponent, 
+             SidebarComponent,
+             FooterComponent
+        
         ],    
 
         imports: [
 
              BrowserModule,   
-
              HttpModule,    
              FormsModule,
              ReactiveFormsModule,

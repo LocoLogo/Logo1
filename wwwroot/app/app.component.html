@@ -1,12 +1,21 @@
-<div class='container-fluid'>
-
-    <div class='row'>
-        <div class='col-sm-3'>
-            
+<!--HEADER-->
+        <header class="page-header navbar navbar-fixed-top"></header>
+        <!-- END HEADER -->
+        <div class="clearfix"> </div>
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <sidebar class="page-sidebar-wrapper"></sidebar>
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <div class="page-content" style="background-color: #EEF1F5;">
+                    <!-- BEGIN ACTUAL CONTENT -->
+                     <home-page></home-page>
+                    <!-- END ACTUAL CONTENT -->
+                </div>
+            </div>
+            <!-- END CONTENT -->
         </div>
-
-        <div class='col-sm-9 body-content'>
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-</div>
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        <footer class="page-footer"></footer>
