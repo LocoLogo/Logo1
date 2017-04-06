@@ -15,6 +15,15 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "api/user",
+      "environmentVariables": {
+        "Hosting:Environment": "Development"
+      }
+    },
     "Loco": {
       "commandName": "Project",
       "launchBrowser": true,
@@ -24,4 +33,5 @@
       "applicationUrl": "http://localhost:7800"
     }
   }
+}
 }
