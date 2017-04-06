@@ -8,7 +8,6 @@ import 'rxjs/Rx';
 
 // import our application component
 import { AppComponent } from './app.component';
-
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from "./components/Header/header.component";
 import { SidebarComponent } from "./components/Sidebar/sidebar.component";
