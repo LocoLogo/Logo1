@@ -14,6 +14,7 @@ import { SidebarComponent } from "./components/Sidebar/sidebar.component";
 import { FooterComponent } from "./components/Footer/footer.component";
 import { ProjectComponent } from "./components/Project/project.component";
 import { ProfileComponent } from "./components/Profile/profile.component";
+import { UploadComponent } from "./components/Upload/upload.component";
 
 
 @NgModule({ 
@@ -25,7 +26,8 @@ import { ProfileComponent } from "./components/Profile/profile.component";
              SidebarComponent,
              FooterComponent,
              ProjectComponent,
-             ProfileComponent
+             ProfileComponent,
+             UploadComponent
                      
         ],    
 
