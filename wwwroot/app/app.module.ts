@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core'; 
 import { BrowserModule } from '@angular/platform-browser'; 
 import { HttpModule } from '@angular/http'; 
-import { RouterModule } from '@angular/router';
+import { RouterModule} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRouting } from './app.routing';
-import 'rxjs/Rx'; 
+import { AppRouting } from './app.routing'; 
 
 // import our application component
 import { AppComponent } from './app.component';
@@ -16,9 +15,7 @@ import { ProjectComponent } from "./components/Project/project.component";
 import { ProfileComponent } from "./components/Profile/profile.component";
 import { UploadComponent } from "./components/Upload/upload.component";
 
-
 @NgModule({ 
-
         declarations: [ 
              AppComponent,
              HomeComponent,
@@ -32,27 +29,20 @@ import { UploadComponent } from "./components/Upload/upload.component";
         ],    
 
         imports: [
-
              BrowserModule,   
              HttpModule,    
              FormsModule,
              ReactiveFormsModule,
              RouterModule,
              AppRouting
-           
-
         ],     
 
         providers: [
-          
         ],     
 
         bootstrap: [ 
-    
             AppComponent     
         ], 
     }) 
     
-    export class AppModule { 
-        
-    }
+    export class AppModule {}
