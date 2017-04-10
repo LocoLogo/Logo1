@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Loco.Models;
 
 namespace Loco
 {
@@ -33,6 +34,7 @@ namespace Loco
            
             // Add framework services.
             services.AddMvc();
+            services.AddTransient<DataAccess>();
            
         }
 
