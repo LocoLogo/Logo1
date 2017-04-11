@@ -10,7 +10,7 @@ import { UploadComponent } from "./components/Upload/upload.component";
 const appRoutes: Routes = [
     {
         path: "",
-        component: ProjectComponent
+        component: ProfileComponent
     },
     {
         path: "home",
