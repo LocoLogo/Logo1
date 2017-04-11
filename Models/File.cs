@@ -5,7 +5,6 @@ namespace Loco.Models
 {
     public class File
     {
-        [BsonElement("FileID")]
         public ObjectId Id { get; set; }
         
         [BsonElement("FileName")]
