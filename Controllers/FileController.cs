@@ -5,25 +5,25 @@ using MongoDB.Bson;
  
 namespace Loco.Controllers
 {
-    [Route("api/folder")]
-    public class FolderController : Controller
+    [Route("api/file")]
+    public class FileController : Controller
     {
         DataAccess objds;
 
-        public FolderController()
+        public FileController()
         {
             objds = new DataAccess(); 
         }
  
         [HttpGet]
-        public IEnumerable<Folder> Get()
+        public IEnumerable<File> Get()
         {
-            return objds.GetFolders();
+            return objds.GetFiles();
         }
         [HttpGet("{id:length(24)}")]
         public IActionResult Get(string id)
         {
-            var f = objds.GetUser(new ObjectId(id));
+            var f = objds.GetFile(new ObjectId(id));
             if (f == null)
             {
                 return NotFound();
@@ -32,35 +32,35 @@ namespace Loco.Controllers
         }
  
         [HttpPost]
-        public IActionResult Post([FromBody]Folder f)
+        public IActionResult Post([FromBody]File f)
         {
-            objds.CreateFolder(f);
+            objds.CreateFile(f);
             return new OkObjectResult(f);
         }
         [HttpPut("{id:length(24)}")]
-        public IActionResult Put(string id, [FromBody]Folder p)
+        public IActionResult Put(string id, [FromBody]File p)
         {
             var recId = new ObjectId(id);
-            var user = objds.GetFolder(recId);
-            if (user == null)
+            var file = objds.GetFile(recId);
+            if (file == null)
             {
                 return NotFound();
             }
             
-            objds.UpdateFolder(recId, p);
+            objds.UpdateFile(recId, p);
             return new OkResult();
         }
  
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
-            var folder = objds.GetFolder(new ObjectId(id));
-            if (folder == null)
+            var file = objds.GetFile(new ObjectId(id));
+            if (file == null)
             {
                 return NotFound();
             }
  
-            objds.RemoveFolder(folder.Id);
+            objds.RemoveFile(file.Id);
             return new OkResult();
         }
     }

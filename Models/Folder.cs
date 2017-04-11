@@ -5,9 +5,13 @@ namespace Loco.Models
 {
     public class Folder
     {
-        public ObjectId Id { get; set; }
         [BsonElement("FolderID")]
-        public int FolderName { get; set; }
+        public ObjectId Id { get; set; }
+        
         [BsonElement("FolderName")]
+        public int FolderName { get; set; }
+        
+        [BsonElementAttribute("Repository")]
+        public Project ProjectID { get; set; }
     }
 }

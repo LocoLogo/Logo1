@@ -34,7 +34,7 @@ namespace Loco.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]User u)
         {
-            objds.Create(u);
+            objds.CreateUser(u);
             return new OkObjectResult(u);
         }
         [HttpPut("{id:length(24)}")]
@@ -47,7 +47,7 @@ namespace Loco.Controllers
                 return NotFound();
             }
             
-            objds.Update(recId, p);
+            objds.UpdateUser(recId, p);
             return new OkResult();
         }
  
@@ -60,7 +60,7 @@ namespace Loco.Controllers
                 return NotFound();
             }
  
-            objds.Remove(user.Id);
+            objds.RemoveUser(user.Id);
             return new OkResult();
         }
     }
