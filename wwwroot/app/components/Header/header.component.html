@@ -25,7 +25,7 @@
                     <!-- BEGIN UPLOAD PROJECT -->
                     <li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar">
                              <div class="btn-group dropup" style="margin-top: 7px;">
-                                <a ui-sref="upload"><button class="btn green dropdown-toggle" type="button" data-toggle="dropdown"> Upload Project
+                                <a [routerLink]="['upload']"><button class="btn green dropdown-toggle" type="button" data-toggle="dropdown"> Upload Project
                                 <i class="fa fa-angle-up"></i>
                                 </button></a>
                              </div>
@@ -41,16 +41,12 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-default">
                     <li>
-                        <a href="#/profile/account">
+                        <a [routerLink]="['profile']">
                             <i class="icon-user"></i> My Profile </a>
                     </li>
                     <li>
-                        <a href="#/profile/myprojects">
+                        <a [routerLink]="['project']">
                             <i class="icon-cursor"></i> My Projects </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="icon-key"></i> Log Out </a>
                     </li>
                 </ul>
             </li>

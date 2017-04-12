@@ -10,7 +10,7 @@ import { UploadComponent } from "./components/Upload/upload.component";
 const appRoutes: Routes = [
     {
         path: "",
-        component: ProfileComponent
+        component: ProjectComponent
     },
     {
         path: "home",
@@ -23,6 +23,10 @@ const appRoutes: Routes = [
     {
         path: "upload",
         component: UploadComponent
+    },
+    {
+        path: "project",
+        component: ProjectComponent
     }
 ];
 
