@@ -10,12 +10,16 @@ namespace Loco.Models
         MongoClient _client;
         MongoServer _server;
         MongoDatabase _db;
+        IMongoCollection<User> _collection;
+        IMongoDatabase _db1;
  
         public DataAccess()
         {
             _client = new MongoClient("mongodb://localhost:27017");
             _server = _client.GetServer();
-            _db = _server.GetDatabase("LocoDB");      
+            _db = _server.GetDatabase("LocoDB");
+            _db1=_client.GetDatabase("LocoDB");
+            _collection = _db1.GetCollection<User>("Users");  
         }
  
 
@@ -143,5 +147,13 @@ namespace Loco.Models
             var res = Query<Folder>.EQ(e => e.Id, id);
             var operation = _db.GetCollection<Folder>("Folders").Remove(res);
         }
-    }
+        public string getUsername(ObjectId id)
+        {
+            var condition = Builders<User>.Filter.Eq(p => p.Id, id);
+            var fields = Builders<User>.Projection.Include(p => p.UserName).Exclude(p => p.Id);
+            var results= _collection.Find(condition).Project<User>(fields).ToString();
+            return results;
+        }
+        
+    }    
 }
