@@ -2,7 +2,8 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using System.Collections.Generic;
- 
+using System.Linq;
+
 namespace Loco.Models
 {
     public class DataAccess
@@ -151,8 +152,19 @@ namespace Loco.Models
         {
             var condition = Builders<User>.Filter.Eq(p => p.Id, id);
             var fields = Builders<User>.Projection.Include(p => p.UserName).Exclude(p => p.Id);
-            var results= _collection.Find(condition).Project<User>(fields).ToString();
-            return results;
+            var results= _collection.Find(condition).Project<User>(fields).ToList().ToJson().ToString();
+            string tableName="";
+            int index = results.IndexOf("[{ \"_id\" : ObjectId(\"000000000000000000000000\"), \"UserName\" : \"");
+            if(index >= 0) 
+            {
+                index += "[{ \"_id\" : ObjectId(\"000000000000000000000000\"), \"UserName\" : \"".Length;
+                int endIndex = results.IndexOf("\", \"P", index);
+                if(endIndex >= 0)
+                {
+                    tableName = results.Substring(index, endIndex - index);
+                }
+            }
+            return tableName;
         }
         
     }    
