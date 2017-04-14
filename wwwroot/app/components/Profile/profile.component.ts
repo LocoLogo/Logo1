@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FormControl }            from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'profile',
@@ -13,26 +13,31 @@ export class ProfileComponent {
     //profileForm = null;
     profileForm;
     profileError = false;
+
     constructor(
         private fb: FormBuilder,
         private router: Router) {
         
         this.profileForm = fb.group({
-            firstname: ["", Validators.required],
-            lastname: ["", Validators.required],
-            phone: ["", Validators.required],
+            /*get firstname from db, get function should go
+            in between the ""*/
+            username: ["", Validators.required],
+            email: ["", Validators.required],
             interests: ["", Validators.required],
             role: ["", Validators.required],
             about: ["", Validators.required]
         });
     }
     performProfile(e) {
-        var firstname = this.profileForm.value.firstname;
-        var lastname = this.profileForm.value.lastname;
-        var phone = this.profileForm.value.phone;
+        /*updates firstname from db*/
+        var username = this.profileForm.value.username;
+        var email = this.profileForm.value.email;
         var interests = this.profileForm.value.interests;
         var role = this.profileForm.value.role;
         var about = this.profileForm.value.about;
-        alert("First Name: " + firstname);
+
+        alert("First Name: " + username);
     } 
+
+    
 }
