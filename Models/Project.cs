@@ -11,8 +11,14 @@ namespace Loco.Models
         [BsonElement("ProjectName")]
         public string ProjectName { get; set; }
         
+        [BsonElement("ProjectDepartment")]
+        public string ProjectDepartment { get; set; }
+
         [BsonElement("ProjectDescription")]
         public string ProjectDescription { get; set; }
+
+        [BsonElement("FileURL")]
+        public string FileURL { get; set; }
         
     }       
 }

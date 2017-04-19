@@ -10,10 +10,13 @@ namespace Loco.Models
         [BsonElement("UserName")]
         public string UserName { get; set; }
         
-        [BsonElement("PersonalDescription")]
-        public string PersonalDescription { get; set; }
-        
         [BsonElement("EmailAddress")]
         public string EmailAddress { get; set; }
+        [BsonElement("Interests")]
+        public string Interests { get; set; }
+        [BsonElement("Role")]
+        public string Role { get; set; }
+        [BsonElement("About")]
+        public string About { get; set; }
     }
 }
