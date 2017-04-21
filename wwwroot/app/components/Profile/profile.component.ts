@@ -59,12 +59,16 @@ export class ProfileComponent {
         let bodyString = JSON.stringify(body); 
         let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); 
         let options = new RequestOptions({ headers: headers });
-
-        alert("Your Profile has been saved.");
-
+        
         return this.http.post("/api/profile/", bodyString, options)
-            .toPromise()
-            .catch(this.handleErrorPromise);
+            .map(response => response.status)
+            .subscribe(result => {
+                if (result < 200 || result >= 300) {
+                    alert("Failed to save your profile. Please check the database connection.");
+                } else {
+                    alert("Your Profile has been saved.");
+                }
+            });
     }
 
     protected extractArray(res: Response, showprogress: boolean = true) {

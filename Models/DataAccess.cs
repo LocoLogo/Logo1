@@ -23,7 +23,16 @@ namespace Loco.Models
         // Begin data access methods for user objects 
         public User GetUser()
         {
-            return _db.GetCollection<User>("Users").FindAll().ToList<User>().LastOrDefault();
+            try
+            {
+                _server.Ping();
+                return _db.GetCollection<User>("Users").FindAll().ToList<User>().LastOrDefault();
+            }
+            catch
+            {
+                return null;
+            }
+            
         }
         public User GetUser(ObjectId id)
         {
@@ -32,8 +41,16 @@ namespace Loco.Models
         }
         public User CreateUser(User u)
         {
-            _db.GetCollection<User>("Users").Save(u);
-            return u;
+            try
+            {
+                _server.Ping();
+                _db.GetCollection<User>("Users").Save(u);
+                return u;
+            }
+            catch
+            {
+                return null;
+            }
         }
         public void UpdateUser(ObjectId id,User u)
         {

@@ -31,8 +31,7 @@ namespace Loco.Controllers
         public IActionResult Get(string id)
         {
             var user = objds.GetUser(new ObjectId(id));
-            if (user == null)
-            {
+            if (user == null) {
                 return NotFound();
             }
             return new ObjectResult(user);
@@ -41,16 +40,20 @@ namespace Loco.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]User u)
         {
-            objds.CreateUser(u);
-            return new OkObjectResult(u);
+            if(objds.CreateUser(u) != null) {
+                return new OkObjectResult(u);
+            } else {
+                OkObjectResult result = new OkObjectResult(u);
+                result.StatusCode = 500;
+                return result;
+            }
         }
         [HttpPut("{id:length(24)}")]
         public IActionResult Put(string id, [FromBody]User p)
         {
             var recId = new ObjectId(id);
             var user = objds.GetUser(recId);
-            if (user == null)
-            {
+            if (user == null) {
                 return NotFound();
             }
 
@@ -62,8 +65,7 @@ namespace Loco.Controllers
         public IActionResult Delete(string id)
         {
             var user = objds.GetUser(new ObjectId(id));
-            if (user == null)
-            {
+            if (user == null) {
                 return NotFound();
             }
 
