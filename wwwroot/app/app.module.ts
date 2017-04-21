@@ -14,6 +14,7 @@ import { FooterComponent } from "./components/Footer/footer.component";
 import { ProjectComponent } from "./components/Project/project.component";
 import { ProfileComponent } from "./components/Profile/profile.component";
 import { UploadComponent } from "./components/Upload/upload.component";
+import { LoginComponent } from "./components/Login/login.component";
 
 @NgModule({ 
         declarations: [ 
@@ -24,7 +25,8 @@ import { UploadComponent } from "./components/Upload/upload.component";
              FooterComponent,
              ProjectComponent,
              ProfileComponent,
-             UploadComponent
+             UploadComponent,
+             LoginComponent
                      
         ],    
 
