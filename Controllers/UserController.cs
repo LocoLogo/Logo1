@@ -15,11 +15,12 @@ namespace Loco.Controllers
             objds = new DataAccess(); 
         }
  
-        /* [HttpGet]
+        [HttpGet]
        public IEnumerable<User> Get()
         {
            return objds.GetUsers();
-        } */
+        }
+        
         [HttpGet("{id:length(24)}")]
         public IActionResult Get(string id)
         {

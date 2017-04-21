@@ -58,7 +58,7 @@ namespace SimpleTokenProvider
             // You can add other claims here, if you want:
             var claims = new Claim[]
             {
-               Claim(JwtRegisteredClaimNames.Sub, username),
+               new Claim(JwtRegisteredClaimNames.Sub, username),
                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                new Claim(JwtRegisteredClaimNames.Iat, now.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64)
             };
