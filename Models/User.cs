@@ -1,10 +1,12 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
- 
+using Newtonsoft.Json;
+
 namespace Loco.Models
 {
-    public class User
+    public partial class User
     {
+        [JsonIgnore]
         public ObjectId Id { get; set; }
         
         [BsonElement("UserName")]

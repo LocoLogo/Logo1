@@ -2,7 +2,8 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using System.Collections.Generic;
- 
+using System.Linq;
+
 namespace Loco.Models
 {
     public class DataAccess
@@ -20,9 +21,9 @@ namespace Loco.Models
  
 
         // Begin data access methods for user objects 
-        public IEnumerable<User> GetUsers()
+        public User GetUser()
         {
-            return _db.GetCollection<User>("Users").FindAll();
+            return _db.GetCollection<User>("Users").FindAll().ToList<User>().LastOrDefault();
         }
         public User GetUser(ObjectId id)
         {

@@ -3,11 +3,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { HttpModule } from '@angular/http'; 
-import { Http, Response } from '@angular/http';
-import {RequestOptions, Request, RequestMethod} from '@angular/http';
-
-import { Injectable }              from '@angular/core';
+import { Http, Headers, Response } from '@angular/http';
+import { RequestOptions, Request, RequestMethod} from '@angular/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'profile',
@@ -15,20 +16,30 @@ import { Observable } from 'rxjs/Observable';
 })
 
 export class ProfileComponent {
-    UrlToEdit: "";
     title = "Profile";
-    //profileForm = null;
     profileForm;
     profileError = false;
+    result : IUser;
 
     constructor(
         private fb: FormBuilder,
         private router: Router,
         private http: Http) {
-        
+
+        this.http.get("/api/profile")
+            .map(response => response.json())
+            .subscribe(result => {
+                this.result = result;
+                this.profileForm = fb.group({
+                    username: [result.userName, Validators.required],
+                    email: [result.emailAddress, Validators.required],
+                    interests: [result.interests, Validators.required],
+                    role: [result.role, Validators.required],
+                    about: [result.about, Validators.required]
+                });
+            });
+
         this.profileForm = fb.group({
-            /*get firstname from db, get function should go
-            in between the ""*/
             username: ["", Validators.required],
             email: ["", Validators.required],
             interests: ["", Validators.required],
@@ -36,26 +47,56 @@ export class ProfileComponent {
             about: ["", Validators.required]
         });
     }
+
     performProfile(e) {
-        /*updates firstname from db*/
         var username = this.profileForm.value.username;
         var email = this.profileForm.value.email;
         var interests = this.profileForm.value.interests;
         var role = this.profileForm.value.role;
         var about = this.profileForm.value.about;
-
-
-/*http://stackoverflow.com/questions/40046257/typescript-angular-2-http-post-to-c-sharp-mvc
-        var body = {"username": username, "email": email, "interests": interests, "role": role, "about": about};
+        
+        var body = { "UserName": username, "EmailAddress": email, "Interests": interests, "Role": role, "About": about};
         let bodyString = JSON.stringify(body); 
-        let headers = new Headers({ 'Content-Type': 'application/json' }); 
-        let options = new RequestOptions({ headers: headers }); 
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); 
+        let options = new RequestOptions({ headers: headers });
 
-        return this.http.post(this.UrlToEdit, body, options)
-            .map((res: Response) => res.json())
-            .catch((error: any) => console.log("Edited value did not been saved"));
-            */
+        alert("Your Profile has been saved.");
+
+        return this.http.post("/api/profile/", bodyString, options)
+            .toPromise()
+            .catch(this.handleErrorPromise);
+    }
+
+    protected extractArray(res: Response, showprogress: boolean = true) {
+        let data = res.json();
+        return data || [];
+    }
+
+    protected handleErrorPromise(error: any): Promise<void> {
+        try {
+            error = JSON.parse(error._body);
+        } catch (e) {
+        }
+
+        let errMsg = error.errorMessage
+            ? error.errorMessage
+            : error.message
+                ? error.message
+                : error._body
+                    ? error._body
+                    : error.status
+                        ? `${error.status} - ${error.statusText}`
+                        : 'unknown server error';
+        console.error(errMsg);
+        return Promise.reject(errMsg);
+    }
+    
 }
 
-    
+export interface IUser {
+    UserName: string,
+    EmailAddress: string,
+    Interests: string,
+    Role: string,
+    About: string
 }
