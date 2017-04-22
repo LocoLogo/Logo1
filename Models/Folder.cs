@@ -1,11 +1,12 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
  
 namespace Loco.Models
 {
-    public class Folder
+    public partial class Folder
     {
-        [BsonElement("FolderID")]
+        [JsonIgnore]
         public ObjectId Id { get; set; }
         
         [BsonElement("FolderName")]
