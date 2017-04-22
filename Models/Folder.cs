@@ -9,7 +9,7 @@ namespace Loco.Models
         public ObjectId Id { get; set; }
         
         [BsonElement("FolderName")]
-        public int FolderName { get; set; }
+        public string FolderName { get; set; }
         
         [BsonElementAttribute("Repository")]
         public Project ProjectID { get; set; }
