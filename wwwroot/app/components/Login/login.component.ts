@@ -43,7 +43,7 @@ export class LoginComponent {
         });
     }
 
-    performProfile(e) {
+    performLogin(e) {
         var username = this.loginForm.value.username;
         var password = this.loginForm.value.email;
         
@@ -56,9 +56,9 @@ export class LoginComponent {
             .map(response => response.status)
             .subscribe(result => {
                 if (result < 200 || result >= 300) {
-                    alert("Failed to save your profile. Please check the database connection.");
+                    alert("Failed to login. Please check the database connection.");
                 } else {
-                    alert("Your Profile has been saved.");
+                    alert("Your login is successufla.");
                 }
             });
     }

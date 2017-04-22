@@ -15,7 +15,8 @@
 <!-- END PAGE HEADER-->
 <!-- BEGIN MAIN CONTENT -->
 <div class="row" ng-controller="FileUploadCtrl" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
-    <div class="col-md-4">
+<div class="col-md-12">
+<form class="form-profile" [formGroup]="uploadForm" (submit)="performUpload($event)">
         <!-- BEGIN: ACCORDION DEMO -->
         <div class="portlet light bordered">
             <div class="portlet-title">
@@ -31,13 +32,10 @@
                     <div class="file-drop-zone margin-bottom-20" nv-file-over="" uploader="uploader" over-class="file-drop-zone-over"> Base drop zone </div>
                 </div>
                 <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
-                <input type="file" nv-file-select="" uploader="uploader" multiple />
+                <input type="file" formControlName="uploadedFiles"  uploader="uploader" multiple />
                 </div>
         </div>
         <!-- END: ACCORDION DEMO -->
-    </div>
-    <div class="col-md-8">
-<form class="form-profile" [formGroup]="uploadForm" (submit)="performUpload($event)">
                         <div class="form-group">
                             <label class="control-label">Project Name</label>
                             <input formControlName="projectname" type="text" class="form-control" /> </div>

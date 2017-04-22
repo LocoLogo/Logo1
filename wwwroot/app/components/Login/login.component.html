@@ -4,13 +4,13 @@
 <!-- BEGIN PROFILE CONTENT -->
 <div class="profile-content fade-in-up">
 <div class="row">
-    <div style="width: 400px;">
-        <div class="portlet light" style="width: 400px;">
-            <div class="portlet-body" style="width: 400px;"> 
+    <div style="width: 800px;">
+        <div class="portlet light" style="width: 550px;">
+            <div class="portlet-body" style="width: 500px;"> 
                 <div class="tab-content">
                     <!-- LOGIN TAB -->
                     <div class="tab-pane active" id="tab_1_1">
-                    <form class="form-login" [formGroup]="loginForm" (submit)="performProfile($event)">
+                    <form class="form-login" [formGroup]="loginForm" (submit)="performLogin($event)">
                             <div class="form-group">
                                 <label class="control-label">Username</label>
                                 <input formControlName="username" type="text" class="form-control" />
