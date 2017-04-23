@@ -66,17 +66,17 @@ namespace Loco.Controllers
             return new OkResult();
         }
 
-        /* Takes files and zips them using the DotNetZipLibrary
+        /* Takes files and zips them* */
         public void CreateZip(){
-            using (ZipFile zip = new ZipFile()){
-                // add this map file into the "images" directory in the zip archive
-                zip.AddFile("c:\\images\\personal\\7440-N49th.png", "images");
-                // add the report into a different directory in the archive
-                zip.AddFile("c:\\Reports\\2008-Regional-Sales-Report.pdf", "files");
-                zip.AddFile("ReadMe.txt");
-                zip.Save("MyZipFile.zip");
-            }
+            /* PROJECT FOLDER */
+            string startPath = @"c:\example\start";
+            /* PATH WE WANT ZIP TO BE */
+            string zipPath = @"c:\example\result.zip";
+            string extractPath = @"c:\example\extract";
+
+            ZipFile.CreateFromDirectory(startPath, zipPath);
+            ZipFile.ExtractToDirectory(zipPath, extractPath);
         }
-        */
+        
     }
 }
