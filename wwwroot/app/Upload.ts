@@ -4,7 +4,7 @@ export class Upload
      public uploadfiles: string,
      public projectname: string,
      public projectdepartment: string,
-     public  description: string
+     public description: string
     ) { 
     }
 }

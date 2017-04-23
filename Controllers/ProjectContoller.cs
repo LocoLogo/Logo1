@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Loco.Models;
 using MongoDB.Bson;
+using System.IO;
+using System.IO.Compression;
  
 namespace Loco.Controllers
 {
@@ -62,6 +64,16 @@ namespace Loco.Controllers
  
             objds.RemoveProject(project.Id);
             return new OkResult();
+        }
+
+        /* Takes a folder and zips, serves a URL for a location of the zip file*/
+        public static void CreateFromDirectory(){
+            string startPath = @"c:\example\start";
+            string zipPath = @"c:\example\result.zip";
+            string extractPath = @"c:\example\extract";
+
+            ZipFile.CreateFromDirectory(startPath, zipPath);
+            ZipFile.ExtractToDirectory(zipPath, extractPath);
         }
     }
 }

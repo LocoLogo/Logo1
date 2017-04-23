@@ -28,7 +28,7 @@ export class UploadComponent {
         private router: Router,
         private http: Http) {
 
-        this.http.get("/api/upload")
+        this.http.get("/api/project")
             .map(response => response.json())
             .subscribe(result => {
                 this.result = result;
@@ -59,7 +59,7 @@ export class UploadComponent {
         let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); 
         let options = new RequestOptions({ headers: headers });
         
-        return this.http.post("/api/upload/", bodyString, options)
+        return this.http.post("/api/project/", bodyString, options)
             .map(response => response.status)
             .subscribe(result => {
                 if (result < 200 || result >= 300) {
