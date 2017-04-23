@@ -58,11 +58,9 @@ namespace SimpleTokenProvider
             // You can add other claims here, if you want:
             var claims = new Claim[]
             {
-                /*
                new Claim(JwtRegisteredClaimNames.Sub, username),
                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-               new Claim(JwtRegisteredClaimNames.Iat, now.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64)
-               */
+               new Claim(JwtRegisteredClaimNames.Iat, new DateTimeOffset(now).ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64)
             };
         
             // Create the JWT and write it to a string
@@ -87,7 +85,6 @@ namespace SimpleTokenProvider
         }
         private Task<ClaimsIdentity> GetIdentity(string username, string password)
         {
-            // DON'T do this in production, obviously!
             if (username == "TEST" && password == "TEST123")
             {
                 return Task.FromResult(new ClaimsIdentity(new System.Security.Principal.GenericIdentity(username, "Token"), new Claim[] { }));
