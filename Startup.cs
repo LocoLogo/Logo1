@@ -37,6 +37,8 @@ namespace Loco
            
             // Add framework services.
             services.AddMvc();
+            
+            /*DEPENDENCY INJECTION*/
             services.AddTransient<DataAccess>();
            
         }

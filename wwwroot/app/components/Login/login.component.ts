@@ -32,7 +32,7 @@ export class LoginComponent {
             .subscribe(result => {
                 this.result = result;
                 this.loginForm = fb.group({
-                    username: [result.userName, Validators.required],
+                    username: [result.username, Validators.required],
                     password: [result.password, Validators.required]
                 });
             });
@@ -45,7 +45,7 @@ export class LoginComponent {
 
     performLogin(e) {
         var username = this.loginForm.value.username;
-        var password = this.loginForm.value.email;
+        var password = this.loginForm.value.password;
         
         var body = { "UserName": username, "Password": password};
         let bodyString = JSON.stringify(body); 
@@ -90,6 +90,6 @@ export class LoginComponent {
 }
 
 export interface ILogin {
-    UserName: string,
-    Password: string
+    username: string,
+    password: string
 }

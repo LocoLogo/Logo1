@@ -28,14 +28,14 @@ export class UploadComponent {
         private router: Router,
         private http: Http) {
 
-        this.http.get("/api/project")
+        this.http.get("/api/upload")
             .map(response => response.json())
             .subscribe(result => {
                 this.result = result;
                 this.uploadForm = fb.group({
                     uploadfiles: [result.uploadfiles, Validators.required],
                     projectname: [result.projectname, Validators.required],
-                    projectdepartment: [result.department, Validators.required],
+                    projectdepartment: [result.projectdepartment, Validators.required],
                     description: [result.description, Validators.required],
                 });
             });
@@ -59,7 +59,7 @@ export class UploadComponent {
         let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); 
         let options = new RequestOptions({ headers: headers });
         
-        return this.http.post("/api/project/", bodyString, options)
+        return this.http.post("/api/upload/", bodyString, options)
             .map(response => response.status)
             .subscribe(result => {
                 if (result < 200 || result >= 300) {
