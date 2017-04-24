@@ -10,6 +10,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
+import { AuthenticationService } from '../AuthenticationService';
+
 @Component({
     
     selector: 'login',
@@ -25,18 +27,7 @@ export class LoginComponent {
     constructor(
         private fb: FormBuilder,
         private router: Router,
-        private http: Http) {
-
-        this.http.get("/api/login")
-            .map(response => response.json())
-            .subscribe(result => {
-                this.result = result;
-                this.loginForm = fb.group({
-                    username: [result.username, Validators.required],
-                    password: [result.password, Validators.required]
-                });
-            });
-
+        private authenticationService: AuthenticationService) { 
         this.loginForm = fb.group({
             username: ["", Validators.required],
             password: ["", Validators.required]
@@ -52,15 +43,18 @@ export class LoginComponent {
         let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); 
         let options = new RequestOptions({ headers: headers });
         
-        return this.http.post("/api/profile/", bodyString, options)
-            .map(response => response.status)
-            .subscribe(result => {
-                if (result < 200 || result >= 300) {
-                    alert("Failed to login. Please check the database connection.");
-                } else {
-                    alert("Your login is successufla.");
-                    this.router.navigate(['/project']);
-                }
+        this.authenticationService.login(username, password)
+            .subscribe((data) => {
+                // login successful
+                this.loginError = false;
+                var auth = this.authenticationService.getAuth();
+                alert("Our Token is: " + auth.access_token);
+                this.router.navigate([""]);
+            },
+            (err) => {
+                console.log(err);
+                // login failure
+                this.loginError = true;
             });
     }
 
