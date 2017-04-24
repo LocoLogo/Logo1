@@ -52,13 +52,14 @@ export class LoginComponent {
         let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); 
         let options = new RequestOptions({ headers: headers });
         
-        return this.http.post("/api/login/", bodyString, options)
+        return this.http.post("/api/profile/", bodyString, options)
             .map(response => response.status)
             .subscribe(result => {
                 if (result < 200 || result >= 300) {
                     alert("Failed to login. Please check the database connection.");
                 } else {
                     alert("Your login is successufla.");
+                    this.router.navigate(['/project']);
                 }
             });
     }

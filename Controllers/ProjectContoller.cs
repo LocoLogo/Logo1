@@ -66,14 +66,17 @@ namespace Loco.Controllers
             return new OkResult();
         }
 
-        /* Takes a folder and zips, serves a URL for a location of the zip file*/
-        public static void CreateFromDirectory(){
+        /* Takes files and zips them* */
+        public void CreateZip(){
+            /* PROJECT FOLDER */
             string startPath = @"c:\example\start";
+            /* PATH WE WANT ZIP TO BE */
             string zipPath = @"c:\example\result.zip";
             string extractPath = @"c:\example\extract";
 
             ZipFile.CreateFromDirectory(startPath, zipPath);
             ZipFile.ExtractToDirectory(zipPath, extractPath);
         }
+        
     }
 }
