@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Loco.csproj" />
+    <ProjectReference Include="..\Application\Loco.csproj" />
   </ItemGroup>
 
   <ItemGroup>
