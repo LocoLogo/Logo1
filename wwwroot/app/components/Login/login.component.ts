@@ -58,7 +58,6 @@ export class LoginComponent {
                 if (result < 200 || result >= 300) {
                     alert("Failed to login. Please check the database connection.");
                 } else {
-                    alert("Your login is successufla.");
                     this.router.navigate(['/project']);
                 }
             });
