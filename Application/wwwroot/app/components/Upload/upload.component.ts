@@ -51,6 +51,7 @@ export class UploadComponent {
         this.service.makeFileRequest(URL, [], this.filesToUpload, projectname, projectdepartment, description).subscribe(() => {
             console.log('sent');
             alert("Project " + projectname + " has been uploaded!");
+            this.router.navigate(['/project']);
         });
         
     }    
